@@ -14,7 +14,7 @@ int main() {
 
     do
     {
-        printf("Enter the password: ");
+        printf("\nEnter the password: ");
         scanf(" %d", &password);
         checkPassword(password);
 
@@ -36,6 +36,7 @@ int main() {
     return 0;
 }
 
+ // just for demo
 bool checkPassword(int password){
 
 
@@ -60,6 +61,7 @@ void menuBank(){
         printf("3. Exit\n");
         printf("Enter your choise: \n");
         scanf("%d", &mainMenuChoise);
+
         if (mainMenuChoise != 1 && mainMenuChoise != 2 && mainMenuChoise != 3)
         {
             printf("\nYou can only chose (1-3)");
@@ -74,7 +76,7 @@ void menuBank(){
 
         } else{
 
-            menuBank();
+            break;
         }
           
     } while (mainMenuChoise != 1 && mainMenuChoise != 2 && mainMenuChoise != 3);
@@ -99,14 +101,55 @@ void menuBank(){
 void currentAccountMenu(){
 
     int currentAccountMenuChoise = 0;
-    double currentAccountBalance = 0;
+    double currentAccountBalance = 5000;
+    double amountMoneyWithdraw = 0; 
 
-    printf("\nCurrent Account Menu\n");
-    printf("1. Check Balance\n");
-    printf("2. Withdraw Money\n");
-    printf("3. Back to Main Menu\n");
-    printf("Enter your choise: \n");
-    scanf("%d", currentAccountMenu);
+    do
+    {
+        printf("\nCurrent Account Menu\n");
+        printf("1. Check Balance\n");
+        printf("2. Withdraw Money\n");
+        printf("3. Back to Main Menu\n");
+        printf("Enter your choise: ");
+        scanf("%d", &currentAccountMenuChoise);
+
+    if (currentAccountMenuChoise != 1 && currentAccountMenuChoise != 2 && currentAccountMenuChoise != 3)
+        {
+            printf("\nYou can only chose (1-3)");
+
+        } else if( currentAccountMenuChoise == 1){
+
+            printf("\nYour current Balance is: %.2lf $", currentAccountBalance);
+            //currentAccountMenu();
+
+        } else if(currentAccountMenuChoise == 2){
+
+            do
+            {
+                printf("\nAmount of Money you want to Withdraw: ");
+                scanf("%lf", &amountMoneyWithdraw);
+
+                if( amountMoneyWithdraw > currentAccountBalance){
+                    printf("You can't withdraw more money than you have\nYou have in your account %.2lf$ and you want you withdraw %.2lf$", currentAccountBalance, amountMoneyWithdraw);
+
+                } else if(amountMoneyWithdraw <= currentAccountBalance){
+
+                    currentAccountBalance -= amountMoneyWithdraw;
+                    //currentAccountMenu();
+                }
+            } while (amountMoneyWithdraw > currentAccountBalance);
+            
+
+        } else{
+
+            menuBank();
+        }
+          
+    } while (currentAccountMenuChoise != 3);
+
+    
+
+
 }
 
 void savingsAccountMenu(){
@@ -119,5 +162,8 @@ void savingsAccountMenu(){
     printf("2. Withdraw Money\n");
     printf("3. Back to Main Menu\n");
     printf("Enter your choise: \n");
-    scanf("%d", savingsAccountMenu);
+    scanf("%d", &savingsAccountMenu);
 }
+
+
+//See Loop When i 
